@@ -6,17 +6,21 @@ import {NavigationComponent} from './components/navigation/navigation.component'
 import {PrimeNgModule} from "./modules/prime-ng.module";
 import {AdditionComponent} from './components/addition/addition.component';
 import {AppRouterModule} from "./modules/app-router.module";
+import { LineComponent } from './components/addition/line/line.component';
+import {RippleModule} from "primeng/ripple";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    AdditionComponent
+    AdditionComponent,
+    LineComponent
   ],
   imports: [
     BrowserModule,
     PrimeNgModule,
     AppRouterModule,
+    RippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

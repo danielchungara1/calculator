@@ -1,0 +1,15 @@
+
+<div class="box-container">
+  <span class="label-val">{{firstValue}}</span>
+  <span>+</span>
+  <span class="label-val">{{secondValue}}</span>
+  <span>=</span>
+  <input
+    type="number"
+    pInputText
+    placeholder="result"
+    class="result-addition"
+    #result
+    [ngStyle]="{'color':result.value == (firstValue + secondValue).toString() ? 'green' : 'red' }"
+  >
+</div>

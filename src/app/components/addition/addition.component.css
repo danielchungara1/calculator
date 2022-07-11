@@ -1,8 +1,20 @@
-.label-val,
-.result-addition{
-  margin: 0 10px;
-}
-
 .box-container {
   margin: 10px;
+}
+
+.box-container ::ng-deep input{
+  padding: 5px !important;
+}
+
+.box-container ::ng-deep .p-card .p-card-content {
+  padding-top: 0;
+}
+
+.box-container .refresh-addition {
+  position: absolute;
+  right: 0;
+}
+
+.box-container ::ng-deep .p-card-header {
+  position: relative;
 }

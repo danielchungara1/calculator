@@ -1,7 +1,19 @@
-<p-card header="Suma" [style]="{'width': '25rem', 'margin-bottom': '2em'}" class="box-container">
-  <span class="label-val">12</span>
-  <span>+</span>
-  <span class="label-val">451</span>
-  <span>=</span>
-  <input type="text" pInputText placeholder="result" class="result-addition">
+<p-card
+  header="Suma"
+  [style]="{'width': '25rem', 'margin-bottom': '2em'}"
+  class="box-container"
+>
+  <ng-template pTemplate="header">
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-refresh"
+      class="p-button-rounded p-button-secondary p-button-text refresh-addition"
+      (click)="refreshLineAddition()"
+    ></button>
+  </ng-template>
+  <div *ngFor="let number of cantLines">
+    <app-line [refreshEvent]="refreshSubject.asObservable()"></app-line>
+  </div>
 </p-card>

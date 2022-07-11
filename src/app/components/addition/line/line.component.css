@@ -1,0 +1,12 @@
+.label-val,
+.result-addition{
+  margin: 5px 10px;
+}
+
+.success-result {
+  color: green;
+}
+
+.failure-result {
+  color: red;
+}
