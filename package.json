@@ -2,8 +2,8 @@
   "name": "calculator",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
-    "build-prod": "ng build --prod"
+    "heroku-postbuild": "ng build",
+    "build-prod": "ng build"
   },
   "engines": {
     "node": "^14.15.3",
