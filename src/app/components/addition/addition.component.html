@@ -13,7 +13,10 @@
       (click)="refreshLineAddition()"
     ></button>
   </ng-template>
-  <div *ngFor="let number of cantLines">
-    <app-line [refreshEvent]="refreshSubject.asObservable()"></app-line>
+  <div *ngFor="let number of cantLines; let i = index" >
+    <app-line
+      [refreshEvent]="refreshSubject.asObservable()"
+      [position]="i"
+    ></app-line>
   </div>
 </p-card>

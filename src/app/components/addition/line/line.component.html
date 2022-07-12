@@ -4,11 +4,13 @@
   <span class="label-val">{{secondValue}}</span>
   <span>=</span>
   <input
+    [id]="'id-addition-' + position"
     type="number"
     pInputText
-    placeholder="result"
+    placeholder="???"
     class="result-addition"
     #result
     [ngStyle]="{'color':result.value == (firstValue + secondValue).toString() ? 'green' : 'red' }"
+    (keyup.enter)="changeFocusAdditionInput()"
   >
 </div>

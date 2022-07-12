@@ -15,6 +15,8 @@ export class LineComponent implements OnInit {
   secondValue: number = 0;
   // @ts-ignore
   @ViewChild('result') inputResult: ElementRef
+  // @ts-ignore
+  @Input() position: number;
 
   //---------------------------------------------------------------
   // Subscriptions
@@ -50,7 +52,14 @@ export class LineComponent implements OnInit {
     this.refreshEventSub.unsubscribe();
   }
 
-  changeColorResult(result: string) {
-    console.log(result)
+  changeFocusAdditionInput() {
+    debugger
+    let nextPosition = this.position + 1
+    // @ts-ignore
+    if(!document.getElementById("id-addition-" + nextPosition)) {
+      nextPosition = 0
+    }
+    // @ts-ignore
+    document.getElementById("id-addition-" + nextPosition).select();
   }
 }
