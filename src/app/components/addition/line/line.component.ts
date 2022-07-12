@@ -17,31 +17,50 @@ export class LineComponent implements OnInit {
   @ViewChild('result') inputResult: ElementRef
   // @ts-ignore
   @Input() position: number;
+  // @ts-ignore
+  @Input() level: number;
 
   //---------------------------------------------------------------
   // Subscriptions
   //---------------------------------------------------------------
   // @ts-ignore
-  private refreshEventSub: Subscription;
+  private refreshEventSubscription: Subscription;
   // @ts-ignore
   @Input() refreshEvent: Observable<void>;
 
+  // @ts-ignore
+  private paramEventSubscription: Subscription;
+  // @ts-ignore
+  @Input() paramEvent: Observable<number>;
+
+  //---------------------------------------------------------------
+  // Constructor
+  //---------------------------------------------------------------
   constructor() { }
 
   //---------------------------------------------------------------
   // Instance methods
   //--------------------------------------------------------------
   ngOnInit(): void {
-    this.setNewValues()
-    this.refreshEventSub = this.refreshEvent.subscribe(() => {
-      this.setNewValues()
+    this.refreshEventSubscription = this.refreshEvent.subscribe(() => {
+      this.setNewValues(this.level)
       this.inputResult.nativeElement.value = ''
     });
+    this.paramEventSubscription = this.paramEvent.subscribe((level) => {
+      this.setNewValues(level)
+      this.inputResult.nativeElement.value = ''
+    });
+
   }
 
-  setNewValues(): void {
-    this.firstValue = Math.floor(Math.random() * 90 + 10)
-    this.secondValue = Math.floor(Math.random() * 90 + 10)
+  setNewValues(level: number): void {
+    case (level) {
+      when { status: "loading" } -> <p>Loading...</p>,
+      when { status: "success", data } -> <p>{data}</p>,
+      when { status: "error" } -> <p>Oops, an error occured</p>
+    }
+    // this.firstValue = Math.floor(Math.random() * 90 + 10)
+    // this.secondValue = Math.floor(Math.random() * 90 + 10)
   }
 
   //---------------------------------------------------------------
@@ -49,7 +68,7 @@ export class LineComponent implements OnInit {
   //---------------------------------------------------------------
   ngOnDestroy() {
     // @ts-ignore
-    this.refreshEventSub.unsubscribe();
+    this.refreshEventSubscription.unsubscribe();
   }
 
   changeFocusAdditionInput() {
