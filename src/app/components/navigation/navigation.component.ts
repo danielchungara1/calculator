@@ -16,7 +16,11 @@ export class NavigationComponent implements OnInit {
     this.items = [
       {
         label:'Sumas',
-        icon:'pi pi-fw pi-power-off'
+        icon:'pi pi-fw pi-power-off',
+        items: [
+          {label: 'Nivel 1', routerLink: ['addition', 1]},
+          {label: 'Nivel 2', routerLink: ['addition', 2]},
+        ]
       }
     ];
   }

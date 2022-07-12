@@ -1,5 +1,5 @@
 <p-card
-  header="Suma"
+  [header]="'Suma Nivel ' + level"
   [style]="{'width': '25rem', 'margin-bottom': '2em'}"
   class="box-container"
 >
@@ -17,6 +17,7 @@
     <app-line
       [refreshEvent]="refreshSubject.asObservable()"
       [position]="i"
+      [paramEvent] = "levelSubject.asObservable()"
     ></app-line>
   </div>
 </p-card>

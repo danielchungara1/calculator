@@ -13,12 +13,11 @@ export class LineComponent implements OnInit {
   //---------------------------------------------------------------
   firstValue: number = 0;
   secondValue: number = 0;
+  level: number = 1;
   // @ts-ignore
   @ViewChild('result') inputResult: ElementRef
   // @ts-ignore
   @Input() position: number;
-  // @ts-ignore
-  @Input() level: number;
 
   //---------------------------------------------------------------
   // Subscriptions
@@ -54,13 +53,20 @@ export class LineComponent implements OnInit {
   }
 
   setNewValues(level: number): void {
-    case (level) {
-      when { status: "loading" } -> <p>Loading...</p>,
-      when { status: "success", data } -> <p>{data}</p>,
-      when { status: "error" } -> <p>Oops, an error occured</p>
+    switch (String(level)) {
+      case "1":
+        this.firstValue = Math.floor(Math.random() * 9 + 10)
+        this.secondValue = Math.floor(Math.random() * 9 + 10)
+        break
+      case "2":
+        this.firstValue = Math.floor(Math.random() * 9 + 10)
+        this.secondValue = Math.floor(Math.random() * 9 + 100)
+        break
+      default:
+        this.firstValue = Math.floor(Math.random() * 9 + 10)
+        this.secondValue = Math.floor(Math.random() * 9 + 10)
     }
-    // this.firstValue = Math.floor(Math.random() * 90 + 10)
-    // this.secondValue = Math.floor(Math.random() * 90 + 10)
+
   }
 
   //---------------------------------------------------------------
