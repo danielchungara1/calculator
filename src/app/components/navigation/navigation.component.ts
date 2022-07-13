@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from "primeng/api";
+import {MegaMenuItem, MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-navigation',
@@ -8,7 +8,7 @@ import {MenuItem} from "primeng/api";
 })
 export class NavigationComponent implements OnInit {
 
-  items: MenuItem[] = [];
+  items: MegaMenuItem[] = [];
 
   constructor() { }
 
@@ -16,11 +16,7 @@ export class NavigationComponent implements OnInit {
     this.items = [
       {
         label:'Sumas',
-        icon:'pi pi-fw pi-power-off',
-        items: [
-          {label: 'Nivel 1', routerLink: ['addition', 1]},
-          {label: 'Nivel 2', routerLink: ['addition', 2]},
-        ]
+        icon:'pi pi-plus'
       }
     ];
   }

@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
+import {NumbersService} from "../../../util/numbers.service";
 
 @Component({
   selector: 'app-line',
@@ -25,17 +26,17 @@ export class LineComponent implements OnInit {
   // @ts-ignore
   private refreshEventSubscription: Subscription;
   // @ts-ignore
-  @Input() refreshEvent: Observable<void>;
+  private levelEventSubscription: Subscription;
 
   // @ts-ignore
-  private paramEventSubscription: Subscription;
+  @Input() refreshEvent: Observable<void>;
   // @ts-ignore
-  @Input() paramEvent: Observable<number>;
+  @Input() levelEvent: Observable<number>;
 
   //---------------------------------------------------------------
   // Constructor
   //---------------------------------------------------------------
-  constructor() { }
+  constructor(private numbersService :NumbersService) { }
 
   //---------------------------------------------------------------
   // Instance methods
@@ -45,9 +46,10 @@ export class LineComponent implements OnInit {
       this.setNewValues(this.level)
       this.inputResult.nativeElement.value = ''
     });
-    this.paramEventSubscription = this.paramEvent.subscribe((level) => {
+    this.levelEventSubscription = this.levelEvent.subscribe((level) => {
       this.setNewValues(level)
-      this.inputResult.nativeElement.value = ''
+      if (this.inputResult) { this.inputResult.nativeElement.value = '' }
+      this.level = level
     });
 
   }
@@ -55,16 +57,21 @@ export class LineComponent implements OnInit {
   setNewValues(level: number): void {
     switch (String(level)) {
       case "1":
-        this.firstValue = Math.floor(Math.random() * 9 + 10)
-        this.secondValue = Math.floor(Math.random() * 9 + 10)
+        this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
+        this.secondValue = this.numbersService.getRandomNumberBetween(10, 99)
         break
       case "2":
-        this.firstValue = Math.floor(Math.random() * 9 + 10)
-        this.secondValue = Math.floor(Math.random() * 9 + 100)
+        this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
+        this.secondValue = this.numbersService.getRandomNumberBetween(100, 999)
+        break
+      case "3":
+        this.firstValue = this.numbersService.getRandomNumberBetween(100, 999)
+        this.secondValue = this.numbersService.getRandomNumberBetween(100, 999)
         break
       default:
-        this.firstValue = Math.floor(Math.random() * 9 + 10)
-        this.secondValue = Math.floor(Math.random() * 9 + 10)
+        this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
+        this.secondValue = this.numbersService.getRandomNumberBetween(10, 99)
+        break
     }
 
   }
@@ -75,10 +82,11 @@ export class LineComponent implements OnInit {
   ngOnDestroy() {
     // @ts-ignore
     this.refreshEventSubscription.unsubscribe();
+    // @ts-ignore
+    this.levelEventSubscription.unsubscribe();
   }
 
   changeFocusAdditionInput() {
-    debugger
     let nextPosition = this.position + 1
     // @ts-ignore
     if(!document.getElementById("id-addition-" + nextPosition)) {

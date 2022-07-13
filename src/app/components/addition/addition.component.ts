@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {Subject} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {BehaviorSubject, Subject} from "rxjs";
+import {Level} from "./Level";
 
 @Component({
   selector: 'app-addition',
@@ -9,22 +9,38 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AdditionComponent implements OnInit {
 
+  cantRows = new Array<number>(5)
+
+  // @ts-ignore
+  levels: Level[];
+  // @ts-ignore
+  currentLevel: Level;
+
+  //---------------------------------------------------------------
+  // Subjects
+  //---------------------------------------------------------------
   refreshSubject: Subject<void> = new Subject<void>();
-  levelSubject: Subject<number> = new Subject<number>();
-  cantLines = new Array<number>(5);
-  level: number = 1;
+  levelSubject: Subject<number> = new BehaviorSubject<number>(1);
+
+  constructor() {
+  }
+
+  ngOnInit(): void {
+    this.levels = [
+      {name: 'Nivel 1', code: 1},
+      {name: 'Nivel 2', code: 2},
+      {name: 'Nivel 3', code: 3}
+    ];
+    // @ts-ignore
+    this.currentLevel = this.levels.find(level => level.code === 1)
+    this.levelSubject.next(1)
+  }
 
   refreshLineAddition() {
     this.refreshSubject.next();
   }
 
-  constructor(private activatedRoute: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.levelSubject.next(params['id']);
-      this.level = params['id'];
-    })
+  handleChangeLevel(level: Level) {
+    this.levelSubject.next(level.code)
   }
-
 }

@@ -7,7 +7,7 @@ const routes: Routes = [{
   path: '',
   component: LayoutComponent,
   children: [
-    {path: 'addition/:id', component: AdditionComponent},
+    {path: 'addition', component: AdditionComponent},
     {path: '**', component: AdditionComponent}
   ]
 }]

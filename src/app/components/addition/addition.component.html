@@ -1,5 +1,5 @@
 <p-card
-  [header]="'Suma Nivel ' + level"
+  header="Suma"
   [style]="{'width': '25rem', 'margin-bottom': '2em'}"
   class="box-container"
 >
@@ -13,11 +13,21 @@
       (click)="refreshLineAddition()"
     ></button>
   </ng-template>
-  <div *ngFor="let number of cantLines; let i = index" >
+  <div *ngFor="let number of cantRows; let i = index" >
     <app-line
       [refreshEvent]="refreshSubject.asObservable()"
       [position]="i"
-      [paramEvent] = "levelSubject.asObservable()"
+      [levelEvent] = "levelSubject.asObservable()"
     ></app-line>
   </div>
+  <ng-template pTemplate="footer">
+    <p-dropdown
+      #selectLevels
+      [options]="levels"
+      [(ngModel)]="currentLevel"
+      optionLabel="name"
+      (onChange)="handleChangeLevel(selectLevels.value)"
+    >
+    </p-dropdown>
+  </ng-template>
 </p-card>
