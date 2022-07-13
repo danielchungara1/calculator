@@ -8,20 +8,26 @@ import {AdditionComponent} from './components/addition/addition.component';
 import {AppRouterModule} from "./modules/app-router.module";
 import { LineComponent } from './components/addition/line/line.component';
 import {RippleModule} from "primeng/ripple";
+import { LayoutComponent } from './components/layout/layout.component';
+import {FormsModule} from "@angular/forms";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     AdditionComponent,
-    LineComponent
+    LineComponent,
+    LayoutComponent
   ],
-  imports: [
-    BrowserModule,
-    PrimeNgModule,
-    AppRouterModule,
-    RippleModule,
-  ],
+    imports: [
+        BrowserModule,
+        PrimeNgModule,
+        AppRouterModule,
+        RippleModule,
+        FormsModule,
+        BrowserAnimationsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

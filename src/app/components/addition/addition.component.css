@@ -19,6 +19,10 @@
   position: relative;
 }
 
+.box-container ::ng-deep .p-dropdown-label {
+  padding: 8px;
+}
+
 @media only screen and (max-width: 420px)  {
   .box-container ::ng-deep .p-card {
     width: 100% !important;
