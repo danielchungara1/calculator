@@ -17,6 +17,18 @@ export class NavigationComponent implements OnInit {
       {
         label:'Sumas',
         icon:'pi pi-plus'
+      },
+      {
+        label:'Restas',
+        icon:'pi pi-minus'
+      },
+      {
+        label:'Productos',
+        icon:'pi pi-times'
+      },
+      {
+        label:'Divisiones',
+        icon:'pi pi-percentage'
       }
     ];
   }
