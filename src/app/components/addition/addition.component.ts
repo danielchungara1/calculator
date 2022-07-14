@@ -10,7 +10,7 @@ import {ToastMessageService} from "../services/toast-message.service";
 })
 export class AdditionComponent implements OnInit {
 
-  cantRows = new Array<number>(1)
+  cantRows = new Array<number>(5)
 
   // @ts-ignore
   levels: Level[];
