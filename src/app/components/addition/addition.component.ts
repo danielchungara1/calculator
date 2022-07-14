@@ -43,11 +43,7 @@ export class AdditionComponent implements OnInit {
     this.currentLevel = this.levels.find(level => level.code === 1)
     this.levelSubject.next(1)
 
-    // Initialize hash de resultados
-    for (let currentLine = 0; currentLine < this.cantRows.length; currentLine++) {
-      this.results.set(currentLine, false)
-    }
-    console.log(this.results)
+    this.initializeResultsMap()
 
   }
 
@@ -65,6 +61,13 @@ export class AdditionComponent implements OnInit {
     if(Array.from(this.results.values()).every(value => value)) {
       this.refreshLineAddition()
       this.messageService.showBottomCenter("Realizo todas las operaciones con exito.")
+      this.initializeResultsMap()
+    }
+  }
+
+  initializeResultsMap() {
+    for (let currentLine = 0; currentLine < this.cantRows.length; currentLine++) {
+      this.results.set(currentLine, false)
     }
   }
 }
