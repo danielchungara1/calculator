@@ -86,7 +86,7 @@ export class LineComponent implements OnInit {
     this.levelEventSubscription.unsubscribe();
   }
 
-  changeFocusAdditionInput() {
+  changeFocusNextInput() {
     let nextPosition = this.position + 1
     // @ts-ignore
     if(!document.getElementById("id-addition-" + nextPosition)) {
@@ -94,5 +94,12 @@ export class LineComponent implements OnInit {
     }
     // @ts-ignore
     document.getElementById("id-addition-" + nextPosition).select();
+  }
+
+  handleChangeResultValue(resultValue: string) {
+    console.log(resultValue)
+    if (Number(resultValue) === (this.firstValue + this.secondValue)) {
+      this.changeFocusNextInput()
+    }
   }
 }
