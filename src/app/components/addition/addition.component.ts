@@ -3,11 +3,6 @@ import {BehaviorSubject, Subject} from "rxjs";
 import {Level} from "./Level";
 import {ToastMessageService} from "../services/toast-message.service";
 
-interface LineResult {
-  id: number,
-  status: boolean
-}
-
 @Component({
   selector: 'app-addition',
   templateUrl: './addition.component.html',
@@ -15,7 +10,7 @@ interface LineResult {
 })
 export class AdditionComponent implements OnInit {
 
-  cantRows = new Array<number>(5)
+  cantRows = new Array<number>(1)
 
   // @ts-ignore
   levels: Level[];
@@ -60,7 +55,14 @@ export class AdditionComponent implements OnInit {
     // Si todas las lineas de suma estan ok invocar evento refresh
     if(Array.from(this.results.values()).every(value => value)) {
       this.refreshLineAddition()
-      this.messageService.showBottomCenter("Realizo todas las operaciones con exito.")
+      this.messageService.showSuccess({
+        message: "Resuelto exitosamente.",
+        options: {
+          positionClass: "toast-bottom-center",
+          timeOut: 2000,
+          progressBar: true
+        }
+      })
       this.initializeResultsMap()
     }
   }
