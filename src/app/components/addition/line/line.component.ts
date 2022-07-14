@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {NumbersService} from "../../../util/numbers.service";
 
@@ -19,6 +19,9 @@ export class LineComponent implements OnInit {
   @ViewChild('result') inputResult: ElementRef
   // @ts-ignore
   @Input() position: number;
+  resultIsOk: boolean = false;
+
+  @Output() newStateLineEvent = new EventEmitter();
 
   //---------------------------------------------------------------
   // Subscriptions
@@ -97,9 +100,12 @@ export class LineComponent implements OnInit {
   }
 
   handleChangeResultValue(resultValue: string) {
-    console.log(resultValue)
     if (Number(resultValue) === (this.firstValue + this.secondValue)) {
       this.changeFocusNextInput()
+      this.resultIsOk = true
+    } else {
+      this.resultIsOk = false
     }
+    this.newStateLineEvent.emit({id: this.position, status: this.resultIsOk})
   }
 }
