@@ -11,6 +11,7 @@
     class="result-addition"
     #result
     [ngStyle]="{'color':result.value == (firstValue + secondValue).toString() ? 'green' : 'red' }"
-    (keyup.enter)="changeFocusAdditionInput()"
+    (keyup.enter)="changeFocusNextInput()"
+    (input)="handleChangeResultValue(result.value)"
   >
 </div>

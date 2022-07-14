@@ -18,6 +18,7 @@
       [refreshEvent]="refreshSubject.asObservable()"
       [position]="i"
       [levelEvent] = "levelSubject.asObservable()"
+      (newStateLineEvent) = "handleNewLineResult($event)"
     ></app-line>
   </div>
   <ng-template pTemplate="footer">

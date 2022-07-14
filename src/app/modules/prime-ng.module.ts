@@ -6,6 +6,7 @@ import {ButtonModule} from "primeng/button";
 import {CardModule} from "primeng/card";
 import {DropdownModule} from "primeng/dropdown";
 import {MegaMenuModule} from "primeng/megamenu";
+import {ToastModule} from "primeng/toast";
 
 
 
@@ -20,7 +21,8 @@ import {MegaMenuModule} from "primeng/megamenu";
     ButtonModule,
     CardModule,
     DropdownModule,
-    MegaMenuModule
+    MegaMenuModule,
+    ToastModule
   ]
 })
 export class PrimeNgModule { }

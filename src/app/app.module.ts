@@ -11,6 +11,8 @@ import {RippleModule} from "primeng/ripple";
 import { LayoutComponent } from './components/layout/layout.component';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastMessageService} from "./components/services/toast-message.service";
+import {MessageService} from "primeng/api";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         FormsModule,
         BrowserAnimationsModule
     ],
-  providers: [],
+  providers: [
+    MessageService,
+    ToastMessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

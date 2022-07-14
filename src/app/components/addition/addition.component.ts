@@ -1,6 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject, Subject} from "rxjs";
 import {Level} from "./Level";
+import {ToastMessageService} from "../services/toast-message.service";
+
+interface LineResult {
+  id: number,
+  status: boolean
+}
 
 @Component({
   selector: 'app-addition',
@@ -16,13 +22,15 @@ export class AdditionComponent implements OnInit {
   // @ts-ignore
   currentLevel: Level;
 
+  results = new Map<number, boolean>();
+
   //---------------------------------------------------------------
   // Subjects
   //---------------------------------------------------------------
   refreshSubject: Subject<void> = new Subject<void>();
   levelSubject: Subject<number> = new BehaviorSubject<number>(1);
 
-  constructor() {
+  constructor(private messageService: ToastMessageService) {
   }
 
   ngOnInit(): void {
@@ -34,6 +42,13 @@ export class AdditionComponent implements OnInit {
     // @ts-ignore
     this.currentLevel = this.levels.find(level => level.code === 1)
     this.levelSubject.next(1)
+
+    // Initialize hash de resultados
+    for (let currentLine = 0; currentLine < this.cantRows.length; currentLine++) {
+      this.results.set(currentLine, false)
+    }
+    console.log(this.results)
+
   }
 
   refreshLineAddition() {
@@ -42,5 +57,14 @@ export class AdditionComponent implements OnInit {
 
   handleChangeLevel(level: Level) {
     this.levelSubject.next(level.code)
+  }
+
+  handleNewLineResult($event: any) {
+    this.results.set($event.id, $event.status)
+    // Si todas las lineas de suma estan ok invocar evento refresh
+    if(Array.from(this.results.values()).every(value => value)) {
+      this.refreshLineAddition()
+      this.messageService.showBottomCenter("Realizo todas las operaciones con exito.")
+    }
   }
 }
