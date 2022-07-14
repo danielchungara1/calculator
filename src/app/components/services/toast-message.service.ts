@@ -1,72 +1,26 @@
-import { Injectable } from '@angular/core';
-import {MessageService} from "primeng/api";
+import {Injectable} from '@angular/core';
+import {ToastrService} from "ngx-toastr";
+import {ToastParams} from "./ToastParams";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastMessageService {
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: ToastrService) { }
 
-  showSuccess(message: string) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: message});
+  showSuccess(params: ToastParams) {
+    this.messageService.success( params.message, params.title, params.options );
+  }
+  showError(params: ToastParams) {
+    this.messageService.error( params.message, params.title, params.options );
+  }
+  showWarning(params: ToastParams) {
+    this.messageService.warning( params.message, params.title, params.options );
+  }
+  showInfo(params: ToastParams) {
+    this.messageService.info( params.message, params.title, params.options );
   }
 
-  showInfo(message: string) {
-    this.messageService.add({severity:'info', summary: 'Info', detail: message});
-  }
-
-  showWarn(message: string) {
-    this.messageService.add({severity:'warn', summary: 'Warn', detail: message});
-  }
-
-  showError(message: string) {
-    this.messageService.add({severity:'error', summary: 'Error', detail: message});
-  }
-
-  showCustom(message: string) {
-    this.messageService.add({severity:'custom', summary: 'Custom', detail: message, icon: 'pi-file'});
-  }
-
-  showTopLeft(message: string) {
-    this.messageService.add({key: 'tl', severity:'info', summary: 'Info', detail: message});
-  }
-
-  showTopCenter(message: string) {
-    this.messageService.add({key: 'tc', severity:'warn', summary: 'Warn', detail: message});
-  }
-
-  showBottomCenter(message: string) {
-    this.messageService.add({key: 'bc', severity:'success', summary: 'Success', detail: message});
-  }
-
-  // showConfirm(message: string) {
-  //   this.messageService.clear();
-  //   this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:message});
-  // }
-
-  showMultiple() {
-    this.messageService.addAll([
-      {severity:'success', summary:'Message 1', detail:'Message Content'},
-      {severity:'info', summary:'Message 2', detail:'Message Content'},
-      {severity:'warn', summary:'Message 3', detail:'Message Content'}
-    ]);
-  }
-
-  showSticky(message: string) {
-    this.messageService.add({severity:'info', summary: 'Sticky', detail: message, sticky: true});
-  }
-
-  // onConfirm() {
-  //   this.messageService.clear('c');
-  // }
-  //
-  // onReject() {
-  //   this.messageService.clear('c');
-  // }
-
-  clear() {
-    this.messageService.clear();
-  }
 
 }

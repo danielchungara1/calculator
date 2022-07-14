@@ -13,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastMessageService} from "./components/services/toast-message.service";
 import {MessageService} from "primeng/api";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MessageService} from "primeng/api";
         AppRouterModule,
         RippleModule,
         FormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(), // ToastrModule added
     ],
   providers: [
     MessageService,
