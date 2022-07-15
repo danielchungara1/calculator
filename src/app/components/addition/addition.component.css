@@ -27,6 +27,12 @@
   color: whitesmoke;
 }
 
+.box-container ::ng-deep .p-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media only screen and (max-width: 420px)  {
   .box-container ::ng-deep .p-card {
     width: 100% !important;

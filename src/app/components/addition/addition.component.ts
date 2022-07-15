@@ -19,6 +19,8 @@ export class AdditionComponent implements OnInit {
 
   results = new Map<number, boolean>();
 
+  timer: number = 0;
+
   //---------------------------------------------------------------
   // Subjects
   //---------------------------------------------------------------
@@ -39,6 +41,12 @@ export class AdditionComponent implements OnInit {
     this.levelSubject.next(1)
 
     this.initializeResultsMap()
+
+    setInterval(()=> {
+      this.timer++
+    }, 1000)
+    this.refreshSubject.asObservable().subscribe(_ => this.timer = 0)
+    this.levelSubject.asObservable().subscribe(_ => this.timer = 0)
 
   }
 
