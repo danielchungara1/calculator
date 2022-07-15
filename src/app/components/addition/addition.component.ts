@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {BehaviorSubject, Subject} from "rxjs";
+import {BehaviorSubject, Subject, Subscription, timer} from "rxjs";
 import {Level} from "./Level";
 import {ToastMessageService} from "../services/toast-message.service";
+import { map, share } from "rxjs/operators";
+import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-addition',
@@ -20,6 +22,9 @@ export class AdditionComponent implements OnInit {
   results = new Map<number, boolean>();
 
   timer: number = 0;
+  timeoutTimer: number = 1000;
+  // @ts-ignore
+  subscription: Subscription;
 
   //---------------------------------------------------------------
   // Subjects
@@ -42,9 +47,18 @@ export class AdditionComponent implements OnInit {
 
     this.initializeResultsMap()
 
-    setInterval(()=> {
-      this.timer++
-    }, 1000)
+    // setInterval(()=> {
+    //   this.timer++
+    // }, this.timeoutTimer)
+    // Using RxJS Timer
+    this.subscription = timer(0, 1000)
+      .pipe(
+        map(() => 1),
+        share()
+      )
+      .subscribe(counter => {
+        this.timer = this.timer + counter;
+      });
     this.refreshSubject.asObservable().subscribe(_ => this.timer = 0)
     this.levelSubject.asObservable().subscribe(_ => this.timer = 0)
 
@@ -79,5 +93,10 @@ export class AdditionComponent implements OnInit {
     for (let currentLine = 0; currentLine < this.cantRows.length; currentLine++) {
       this.results.set(currentLine, false)
     }
+  }
+
+  switchTimer() {
+    this.timeoutTimer = Number.MAX_VALUE
+    console.log(this.timeoutTimer)
   }
 }

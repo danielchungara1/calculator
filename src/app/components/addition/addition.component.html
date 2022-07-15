@@ -30,6 +30,6 @@
       (onChange)="handleChangeLevel(selectLevels.value)"
     >
     </p-dropdown>
-    <span> {{timer}} </span>
+    <span> {{timer}} <button (click)="switchTimer()">pause</button></span>
   </ng-template>
 </p-card>
