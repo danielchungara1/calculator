@@ -38,8 +38,12 @@ export class AdditionComponent implements OnInit {
     //---------------------------------------------------------------
     // Observers
     //---------------------------------------------------------------
-    this.refreshSubject.asObservable().subscribe(_ => { this.initializeTimer() })
-    this.levelSubject.asObservable().subscribe(_ => { this.initializeTimer() })
+    this.refreshSubject.asObservable().subscribe(_ => {
+      this.initializeTimer()
+    })
+    this.levelSubject.asObservable().subscribe(_ => {
+      this.initializeTimer()
+    })
 
     //---------------------------------------------------------------
     // Levels
@@ -49,9 +53,10 @@ export class AdditionComponent implements OnInit {
       {name: 'Nivel 2', code: 2},
       {name: 'Nivel 3', code: 3}
     ];
+
     // @ts-ignore
-    this.currentLevel = this.levels.find(level => level.code === 1)
-    this.levelSubject.next(1)
+    this.currentLevel = this.levels.find(level => level.code === this.fetchLastLevelOrElseStore(1))
+    this.levelSubject.next(this.fetchLastLevelOrElseStore(1))
 
     //---------------------------------------------------------------
     // Results
@@ -66,14 +71,15 @@ export class AdditionComponent implements OnInit {
 
   handleChangeLevel(level: Level) {
     this.levelSubject.next(level.code)
+    this.storeLastLevel(level.code)
   }
 
   handleNewLineResult($event: any) {
     this.results.set($event.id, $event.status)
     // Si todas las lineas de suma estan ok invocar evento refresh
-    if(Array.from(this.results.values()).every(value => value)) {
+    if (Array.from(this.results.values()).every(value => value)) {
       this.messageService.showSuccess({
-        message: "Resuelto correctamente en " + this.timer + " segundos.",
+        message: "Resuelto correctamente en " + this.timerFormatted() + ".",
         options: {
           positionClass: "toast-bottom-center",
           timeOut: 2000,
@@ -99,7 +105,7 @@ export class AdditionComponent implements OnInit {
     }
   }
 
-  setTimerInterval()  {
+  setTimerInterval() {
     this.timerInterval = setInterval(() => {
       this.timer++
     }, this.TIMEOUT_TIMER);
@@ -110,6 +116,31 @@ export class AdditionComponent implements OnInit {
     this.onTimer = true
     clearTimeout(this.timerInterval)
     this.setTimerInterval()
+  }
+
+  timerFormatted(): string {
+    let minutes = Math.floor(this.timer / 60)
+    let seconds = this.timer - minutes * 60
+    return minutes === 0
+      ? seconds.toString().concat(' segundos')
+      : minutes.toString()
+        .concat(' minutos,')
+        .concat(seconds.toString())
+        .concat(' segundos');
+  }
+
+  storeLastLevel(level: number) {
+    localStorage.setItem("last_level_addition", String(level))
+  }
+
+  fetchLastLevelOrElseStore(defaultLevel: number): number {
+    let lastLevel = defaultLevel
+    if (!localStorage.getItem("last_level_addition")) {
+      this.storeLastLevel(lastLevel)
+    } else {
+      lastLevel = Number(localStorage.getItem("last_level_addition"))
+    }
+    return lastLevel
   }
 
 }
