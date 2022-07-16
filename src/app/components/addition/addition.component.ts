@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {BehaviorSubject, interval, Subject, Subscription, timer} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import {Level} from "./Level";
 import {ToastMessageService} from "../services/toast-message.service";
-import { map, share } from "rxjs/operators";
-import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-addition',
@@ -24,8 +22,8 @@ export class AdditionComponent implements OnInit {
   timer: number = 0;
   TIMEOUT_TIMER: number = 1000;
   timerInterval: any;
-
-  onTimer: boolean = false;
+  // @ts-ignore
+  onTimer: boolean;
 
   //---------------------------------------------------------------
   // Subjects
@@ -37,6 +35,15 @@ export class AdditionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //---------------------------------------------------------------
+    // Observers
+    //---------------------------------------------------------------
+    this.refreshSubject.asObservable().subscribe(_ => { this.initializeTimer() })
+    this.levelSubject.asObservable().subscribe(_ => { this.initializeTimer() })
+
+    //---------------------------------------------------------------
+    // Levels
+    //---------------------------------------------------------------
     this.levels = [
       {name: 'Nivel 1', code: 1},
       {name: 'Nivel 2', code: 2},
@@ -46,10 +53,10 @@ export class AdditionComponent implements OnInit {
     this.currentLevel = this.levels.find(level => level.code === 1)
     this.levelSubject.next(1)
 
+    //---------------------------------------------------------------
+    // Results
+    //---------------------------------------------------------------
     this.initializeResultsMap()
-
-    this.refreshSubject.asObservable().subscribe(_ => { this.initializeTimer() })
-    this.levelSubject.asObservable().subscribe(_ => { this.initializeTimer() })
 
   }
 
@@ -65,16 +72,16 @@ export class AdditionComponent implements OnInit {
     this.results.set($event.id, $event.status)
     // Si todas las lineas de suma estan ok invocar evento refresh
     if(Array.from(this.results.values()).every(value => value)) {
-      this.refreshLineAddition()
       this.messageService.showSuccess({
-        message: "Resuelto exitosamente.",
+        message: "Resuelto correctamente en " + this.timer + " segundos.",
         options: {
           positionClass: "toast-bottom-center",
           timeOut: 2000,
           progressBar: true
         }
-      })
-      this.initializeResultsMap()
+      });
+      this.refreshLineAddition();
+      this.initializeResultsMap();
     }
   }
 
@@ -100,8 +107,6 @@ export class AdditionComponent implements OnInit {
 
   initializeTimer() {
     this.timer = 0
-    // this.onTimer = false
-    // clearTimeout(this.timerInterval)
     this.onTimer = true
     clearTimeout(this.timerInterval)
     this.setTimerInterval()
