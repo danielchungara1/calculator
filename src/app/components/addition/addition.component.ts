@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {BehaviorSubject, Subject} from "rxjs";
+import {BehaviorSubject, interval, Subject, Subscription, timer} from "rxjs";
 import {Level} from "./Level";
 import {ToastMessageService} from "../services/toast-message.service";
+import { map, share } from "rxjs/operators";
+import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-addition',
@@ -20,6 +22,10 @@ export class AdditionComponent implements OnInit {
   results = new Map<number, boolean>();
 
   timer: number = 0;
+  TIMEOUT_TIMER: number = 1000;
+  timerInterval: any;
+
+  onTimer: boolean = false;
 
   //---------------------------------------------------------------
   // Subjects
@@ -42,11 +48,8 @@ export class AdditionComponent implements OnInit {
 
     this.initializeResultsMap()
 
-    setInterval(()=> {
-      this.timer++
-    }, 1000)
-    this.refreshSubject.asObservable().subscribe(_ => this.timer = 0)
-    this.levelSubject.asObservable().subscribe(_ => this.timer = 0)
+    this.refreshSubject.asObservable().subscribe(_ => { this.initializeTimer() })
+    this.levelSubject.asObservable().subscribe(_ => { this.initializeTimer() })
 
   }
 
@@ -80,4 +83,28 @@ export class AdditionComponent implements OnInit {
       this.results.set(currentLine, false)
     }
   }
+
+  switchTimer() {
+    if (this.onTimer) {
+      this.setTimerInterval()
+    } else {
+      clearTimeout(this.timerInterval)
+    }
+  }
+
+  setTimerInterval()  {
+    this.timerInterval = setInterval(() => {
+      this.timer++
+    }, this.TIMEOUT_TIMER);
+  }
+
+  initializeTimer() {
+    this.timer = 0
+    // this.onTimer = false
+    // clearTimeout(this.timerInterval)
+    this.onTimer = true
+    clearTimeout(this.timerInterval)
+    this.setTimerInterval()
+  }
+
 }

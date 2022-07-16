@@ -33,6 +33,14 @@
   align-items: center;
 }
 
+.box-container .timer-container {
+  display: flex;
+}
+.box-container .timer-container .timer-number{
+  font-size: 0.85rem;
+  margin: 0 10px;
+
+}
 @media only screen and (max-width: 420px)  {
   .box-container ::ng-deep .p-card {
     width: 100% !important;

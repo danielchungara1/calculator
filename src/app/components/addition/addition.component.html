@@ -30,6 +30,9 @@
       (onChange)="handleChangeLevel(selectLevels.value)"
     >
     </p-dropdown>
-    <span> {{timer}} </span>
+    <div class="timer-container">
+      <p-inputSwitch [(ngModel)]="onTimer" (onChange)="switchTimer()"></p-inputSwitch>
+      <div class="timer-number"> {{timer}} </div>
+    </div>
   </ng-template>
 </p-card>

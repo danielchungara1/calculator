@@ -22,5 +22,4 @@ export class ToastMessageService {
     this.messageService.info( params.message, params.title, params.options );
   }
 
-
 }
