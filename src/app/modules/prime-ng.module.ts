@@ -6,6 +6,8 @@ import {ButtonModule} from "primeng/button";
 import {CardModule} from "primeng/card";
 import {DropdownModule} from "primeng/dropdown";
 import {MegaMenuModule} from "primeng/megamenu";
+import {ToggleButtonModule} from "primeng/togglebutton";
+import {InputSwitchModule} from "primeng/inputswitch";
 
 @NgModule({
   declarations: [],
@@ -18,7 +20,9 @@ import {MegaMenuModule} from "primeng/megamenu";
     ButtonModule,
     CardModule,
     DropdownModule,
-    MegaMenuModule
+    MegaMenuModule,
+    ToggleButtonModule,
+    InputSwitchModule
   ]
 })
 export class PrimeNgModule { }
