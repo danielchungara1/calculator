@@ -1,0 +1,49 @@
+.box-container {
+  margin: 10px;
+}
+
+.box-container ::ng-deep input{
+  padding: 5px !important;
+}
+
+.box-container ::ng-deep .p-card .p-card-content {
+  padding-top: 0;
+}
+
+.box-container .refresh-addition {
+  position: absolute;
+  right: 0;
+}
+
+.box-container ::ng-deep .p-card-header {
+  position: relative;
+}
+
+.box-container ::ng-deep .p-dropdown-label {
+  padding: 8px;
+}
+
+.box-container ::ng-deep .pi-refresh {
+  color: whitesmoke;
+}
+
+.box-container ::ng-deep .p-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box-container .timer-container {
+  display: flex;
+}
+.box-container .timer-container .timer-number{
+  font-size: 0.85rem;
+  margin: 0 10px;
+
+}
+@media only screen and (max-width: 420px)  {
+  .box-container ::ng-deep .p-card {
+    width: 100% !important;
+  }
+
+}

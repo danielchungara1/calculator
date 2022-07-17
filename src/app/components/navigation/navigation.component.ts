@@ -16,19 +16,23 @@ export class NavigationComponent implements OnInit {
     this.items = [
       {
         label:'Sumas',
-        icon:'pi pi-plus'
+        icon:'pi pi-plus',
+        routerLink: '/addition'
       },
       {
         label:'Restas',
-        icon:'pi pi-minus'
+        icon:'pi pi-minus',
+        routerLink: '/substraction'
       },
       {
         label:'Productos',
-        icon:'pi pi-times'
+        icon:'pi pi-times',
+        routerLink: '/multiplication'
       },
       {
         label:'Divisiones',
-        icon:'pi pi-percentage'
+        icon:'pi pi-percentage',
+        routerLink: '/division'
       }
     ];
   }

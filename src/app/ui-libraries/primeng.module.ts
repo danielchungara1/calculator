@@ -25,4 +25,4 @@ import {InputSwitchModule} from "primeng/inputswitch";
     InputSwitchModule
   ]
 })
-export class PrimeNgModule { }
+export class PrimengModule { }
