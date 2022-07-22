@@ -4,44 +4,56 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import {PrimengModule} from "./ui-libraries/primeng.module";
-import {AdditionComponent} from './components/operations/components/addition/addition.component';
+import {AdditionComponent} from './components/core/operations/addition/addition.component';
 import {AppRouterModule} from "./router/app-router.module";
-import { LineComponent } from './components/operations/components/addition/line/line.component';
+import {LineAdditionComponent} from './components/core/operation-abstract/line/line-addition.component';
 import {RippleModule} from "primeng/ripple";
-import { LayoutComponent } from './components/layout/layout.component';
+import {LayoutComponent} from './components/layout/layout.component';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastMessageService} from "./components/services/toast-message.service";
 import {MessageService} from "primeng/api";
 import {ToastrModule} from "ngx-toastr";
-import {SubtractionComponent} from "./components/operations/components/substraction/subtraction.component";
-import {DivisionComponent} from "./components/operations/components/division/division.component";
-import {MultiplicationComponent} from "./components/operations/components/multiplication/multiplication.component";
+import {SubtractionComponent} from "./components/core/operations/subtraction/subtraction.component";
+import {DivisionComponent} from "./components/core/operations/division/division.component";
+import {MultiplicationComponent} from "./components/core/operations/multiplication/multiplication.component";
+import {LineSubtractionComponent} from "./components/core/operations/subtraction/line/line-subtraction.component";
+import {LineDivisionComponent} from "./components/core/operations/division/line/line-division.component";
+import {
+  LineMultiplicationComponent
+} from "./components/core/operations/multiplication/line/line-multiplication.component";
+import { OperationComponent } from './components/core/operation-abstract/operation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     AdditionComponent,
-    LineComponent,
+    LineAdditionComponent,
+    LineSubtractionComponent,
+    LineDivisionComponent,
+    LineMultiplicationComponent,
     LayoutComponent,
     SubtractionComponent,
     DivisionComponent,
-    MultiplicationComponent
+    MultiplicationComponent,
+    OperationComponent,
+
   ],
-    imports: [
-        BrowserModule,
-        PrimengModule,
-        AppRouterModule,
-        RippleModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        ToastrModule.forRoot(), // ToastrModule added
-    ],
+  imports: [
+    BrowserModule,
+    PrimengModule,
+    AppRouterModule,
+    RippleModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
+  ],
   providers: [
     MessageService,
     ToastMessageService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

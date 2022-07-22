@@ -1,0 +1,44 @@
+<p-card
+  [header]="title"
+  [style]="{'width': '25rem', 'margin-bottom': '2em'}"
+  class="box-container"
+>
+<!--  <ng-template pTemplate="header">-->
+<!--    <button-->
+<!--      pButton-->
+<!--      pRipple-->
+<!--      type="button"-->
+<!--      icon="pi pi-refresh"-->
+<!--      class="p-button-rounded p-button-secondary p-button-text refresh-addition"-->
+<!--      (click)="refreshLineAddition()"-->
+<!--    ></button>-->
+<!--  </ng-template>-->
+<!--  <div *ngFor="let number of cantRows; let i = index" >-->
+<!--  [refreshEvent]="refreshSubject.asObservable()"-->
+<!--  [position]="i"-->
+<!--  [levelEvent] = "levelSubject.asObservable()"-->
+<!--  (newStateLineEvent) = "handleNewLineResult($event)"-->
+  <div *ngFor="let line of linesParams; let i = index" >
+    <app-line-addition
+      [operand1]= "line.operand1"
+      [operand2]= "line.operand2"
+      [validResult]="line.result"
+    ></app-line-addition>
+  </div>
+
+<!--  </div>-->
+<!--  <ng-template pTemplate="footer">-->
+<!--    <p-dropdown-->
+<!--      #selectLevels-->
+<!--      [options]="levels"-->
+<!--      [(ngModel)]="currentLevel"-->
+<!--      optionLabel="name"-->
+<!--      (onChange)="handleChangeLevel(selectLevels.value)"-->
+<!--    >-->
+<!--    </p-dropdown>-->
+<!--    <div class="timer-container">-->
+<!--      <p-inputSwitch [(ngModel)]="onTimer" (onChange)="switchTimer()"></p-inputSwitch>-->
+<!--      <div class="timer-number"> {{timer}} </div>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+</p-card>

@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit {
       {
         label:'Restas',
         icon:'pi pi-minus',
-        routerLink: '/substraction'
+        routerLink: '/subtraction'
       },
       {
         label:'Productos',
