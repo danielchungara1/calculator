@@ -30,6 +30,9 @@ export class LineAdditionComponent implements OnInit {
   @Input() operand1: number = 1
   @Input() operand2: number = 1
   @Input() validResult: number = 2
+  @Input() symbolOperation: string = "+";
+  @Input() nameOperation: string = "addition";
+  @Input() position: number = 0;
 
   // @Input() operandsGenerator: OperandsGenerator = _ => DEFAULT_LINE_OPERANDS;
   // @Input() operationValidator: OperationValidator = (op1, op2, result) => false;
@@ -121,13 +124,23 @@ export class LineAdditionComponent implements OnInit {
   // }
 
   handleChangeResult(currentResult: string) {
-    if(Number(currentResult) === this.validResult) {
-      console.log("Resultado correcto....")
+    if(this.isValidResult(currentResult)) {
+      this.changeFocusNextInput()
     }
   }
 
   isValidResult(currentResult: string): boolean {
     return Number(currentResult) === this.validResult
+  }
+
+  changeFocusNextInput() {
+    let nextPosition = this.position + 1
+    // @ts-ignore
+    if(!document.getElementById("id-" + this.nameOperation + "-" + nextPosition)) {
+      nextPosition = 0
+    }
+    // @ts-ignore
+    document.getElementById("id-" + this.nameOperation + "-" + nextPosition).select();
   }
 
 }

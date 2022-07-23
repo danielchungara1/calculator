@@ -12,6 +12,8 @@ interface LineParams {operand1: number, operand2: number, result: number}
 export class OperationComponent implements OnInit {
 
   @Input() title: string = "Title";
+  @Input() symbolOperation: string = "+";
+  @Input() nameOperation: string = "addition";
   @Input() operandsGenerator: OperandsGenerator = _ => DEFAULT_LINE_OPERANDS;
   @Input() operationResultFn: OperationResultFn = (op1, op2) => 2;
 
