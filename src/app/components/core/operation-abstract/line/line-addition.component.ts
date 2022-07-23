@@ -18,7 +18,7 @@ export class LineAdditionComponent implements OnInit {
   // // secondValue: number = 0;
   // level: number = 1;
   // // @ts-ignore
-  // @ViewChild('result') inputResult: ElementRef
+  @ViewChild('result') inputResult: ElementRef = new ElementRef<any>(1)
   // // @ts-ignore
   // @Input() position: number;
   // resultIsOk: boolean = false;
@@ -27,12 +27,15 @@ export class LineAdditionComponent implements OnInit {
   //
   // currentResult: boolean = false
 
-  @Input() operand1: number = 1
-  @Input() operand2: number = 1
-  @Input() validResult: number = 2
+  operand1: number = 1
+  operand2: number = 1
+  validResult: number = 2
+
   @Input() symbolOperation: string = "+";
   @Input() nameOperation: string = "addition";
   @Input() position: number = 0;
+  @Input() operandsGenerator: OperandsGenerator = _ => DEFAULT_LINE_OPERANDS;
+  @Input() operationResultFn: OperationResultFn = (op1, op2) => 2;
 
   // @Input() operandsGenerator: OperandsGenerator = _ => DEFAULT_LINE_OPERANDS;
   // @Input() operationValidator: OperationValidator = (op1, op2, result) => false;
@@ -41,28 +44,27 @@ export class LineAdditionComponent implements OnInit {
   // // Subscriptions
   // //---------------------------------------------------------------
   // // @ts-ignore
-  // private refreshEventSubscription: Subscription;
+
   // // @ts-ignore
   // private levelEventSubscription: Subscription;
   //
-  // // @ts-ignore
-  // @Input() refreshEvent: Observable<void>;
+
+  private refreshEventSubscription: Subscription = new Subscription();
+  @Input() refreshEvent: Observable<void> = new Observable<void>();
+
   // // @ts-ignore
   // @Input() levelEvent: Observable<number>;
 
-  //---------------------------------------------------------------
-  // Constructor
-  //---------------------------------------------------------------
+
   constructor(private numbersService :NumbersService) { }
 
-  //---------------------------------------------------------------
-  // Instance methods
-  //--------------------------------------------------------------
+
   ngOnInit(): void {
-    // this.refreshEventSubscription = this.refreshEvent.subscribe(() => {
-    //   this.setNewValues(this.level)
-    //   this.inputResult.nativeElement.value = ''
-    // });
+    this.refreshEventSubscription = this.refreshEvent.subscribe(() => {
+      this.setNewValues()
+      this.inputResult.nativeElement.value = ''
+    });
+    this.setNewValues()
     // this.levelEventSubscription = this.levelEvent.subscribe((level) => {
     //   this.setNewValues(level)
     //   if (this.inputResult) { this.inputResult.nativeElement.value = '' }
@@ -71,37 +73,22 @@ export class LineAdditionComponent implements OnInit {
 
   }
 
-  // setNewValues(level: number): void {
-  //   switch (String(level)) {
-  //     case "1":
-  //       this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
-  //       this.secondValue = this.numbersService.getRandomNumberBetween(10, 99)
-  //       break
-  //     case "2":
-  //       this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
-  //       this.secondValue = this.numbersService.getRandomNumberBetween(100, 999)
-  //       break
-  //     case "3":
-  //       this.firstValue = this.numbersService.getRandomNumberBetween(100, 999)
-  //       this.secondValue = this.numbersService.getRandomNumberBetween(100, 999)
-  //       break
-  //     default:
-  //       this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
-  //       this.secondValue = this.numbersService.getRandomNumberBetween(10, 99)
-  //       break
-  //   }
-  //
-  // }
+  setNewValues(): void {
+    let operands = this.operandsGenerator(1)
+    this.operand1 = operands.operand1
+    this.operand2 = operands.operand2
+    this.validResult = this.operationResultFn(this.operand1, this.operand2)
+
+  }
 
   // //---------------------------------------------------------------
   // // Subscriptions Destroy
   // //---------------------------------------------------------------
-  // // ngOnDestroy() {
-  // //   // @ts-ignore
-  // //   this.refreshEventSubscription.unsubscribe();
-  // //   // @ts-ignore
-  // //   this.levelEventSubscription.unsubscribe();
-  // // }
+  ngOnDestroy() {
+    this.refreshEventSubscription.unsubscribe();
+    // // @ts-ignore
+    // this.levelEventSubscription.unsubscribe();
+  }
   //
   // changeFocusNextInput() {
   //   let nextPosition = this.position + 1
