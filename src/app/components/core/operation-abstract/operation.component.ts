@@ -21,12 +21,13 @@ export class OperationComponent implements OnInit {
 
   refreshSubject: Subject<void> = new Subject<void>();
 
-  rows = new Array<number>(this.lines)
+  rows: Array<number> = new Array<number>()
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.rows = new Array<number>(this.lines)
     // for (let i = 0; i < 5; i++) {
     //   let operands = this.operandsGenerator(1)
     //   this.linesParams.push({
