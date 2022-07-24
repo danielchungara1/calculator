@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LineComponent } from './line.component';
+import { LineAdditionComponent } from './line-addition.component';
 
 describe('AdditionLineComponent', () => {
-  let component: LineComponent;
-  let fixture: ComponentFixture<LineComponent>;
+  let component: LineAdditionComponent;
+  let fixture: ComponentFixture<LineAdditionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LineComponent ]
+      declarations: [ LineAdditionComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LineComponent);
+    fixture = TestBed.createComponent(LineAdditionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

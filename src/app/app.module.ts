@@ -3,39 +3,48 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {NavigationComponent} from './components/navigation/navigation.component';
-import {PrimeNgModule} from "./modules/prime-ng.module";
-import {AdditionComponent} from './components/addition/addition.component';
-import {AppRouterModule} from "./modules/app-router.module";
-import { LineComponent } from './components/addition/line/line.component';
+import {PrimengModule} from "./ui-libraries/primeng.module";
+import {AdditionComponent} from './components/screens/addition/addition.component';
+import {AppRouterModule} from "./router/app-router.module";
+import {LineAdditionComponent} from './components/core/operation/line/line-addition.component';
 import {RippleModule} from "primeng/ripple";
-import { LayoutComponent } from './components/layout/layout.component';
+import {LayoutComponent} from './components/layout/layout.component';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastMessageService} from "./components/services/toast-message.service";
 import {MessageService} from "primeng/api";
 import {ToastrModule} from "ngx-toastr";
+import {OperationComponent} from './components/core/operation/operation.component';
+import { SubtractionComponent } from './components/screens/subtraction/subtraction.component';
+import { MultiplicationComponent } from './components/screens/multiplication/multiplication.component';
+import { DivisionComponent } from './components/screens/division/division.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     AdditionComponent,
-    LineComponent,
-    LayoutComponent
+    LineAdditionComponent,
+    LayoutComponent,
+    OperationComponent,
+    SubtractionComponent,
+    MultiplicationComponent,
+    DivisionComponent,
   ],
-    imports: [
-        BrowserModule,
-        PrimeNgModule,
-        AppRouterModule,
-        RippleModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        ToastrModule.forRoot(), // ToastrModule added
-    ],
+  imports: [
+    BrowserModule,
+    PrimengModule,
+    AppRouterModule,
+    RippleModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
+  ],
   providers: [
     MessageService,
     ToastMessageService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

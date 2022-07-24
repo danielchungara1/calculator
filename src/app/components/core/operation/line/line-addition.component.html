@@ -1,0 +1,17 @@
+<div class="box-container">
+  <span class="label-val">{{operand1}}</span>
+  <span>{{symbolOperation}}</span>
+  <span class="label-val">{{operand2}}</span>
+  <span>=</span>
+    <input
+      [id]="'id-' + nameOperation + '-' + position"
+      type="number"
+      pInputText
+      placeholder="???"
+      class="result-addition"
+      #result
+      (input)="handleChangeResult(result.value)"
+      [ngStyle]="{'color': isValidResult(result.value) ? 'green' : 'red' }"
+      (keyup.enter)="changeFocusNextInput()"
+  >
+</div>
