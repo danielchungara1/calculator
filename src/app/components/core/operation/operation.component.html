@@ -26,22 +26,25 @@
       [position]= "i"
       [nameOperation]="nameOperation"
       [refreshEvent]="refreshSubject.asObservable()"
+      [levelEvent] = "levelSubject.asObservable()"
+      (newStateLineEvent) = "handleNewLineResult($event)"
     ></app-line-addition>
   </div>
 
 <!--  </div>-->
-<!--  <ng-template pTemplate="footer">-->
-<!--    <p-dropdown-->
-<!--      #selectLevels-->
-<!--      [options]="levels"-->
-<!--      [(ngModel)]="currentLevel"-->
-<!--      optionLabel="name"-->
-<!--      (onChange)="handleChangeLevel(selectLevels.value)"-->
-<!--    >-->
-<!--    </p-dropdown>-->
+  <ng-template pTemplate="footer">
+    <p-dropdown
+      #selectLevels
+      [options]="levels"
+      [(ngModel)]="currentLevel"
+      optionLabel="name"
+      (onChange)="handleChangeLevel(selectLevels.value)"
+    >
+    </p-dropdown>
 <!--    <div class="timer-container">-->
 <!--      <p-inputSwitch [(ngModel)]="onTimer" (onChange)="switchTimer()"></p-inputSwitch>-->
 <!--      <div class="timer-number"> {{timer}} </div>-->
 <!--    </div>-->
-<!--  </ng-template>-->
+  </ng-template>
+
 </p-card>

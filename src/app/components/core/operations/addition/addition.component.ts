@@ -1,7 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {BehaviorSubject, Subject} from "rxjs";
-import {Level} from "../../interfaces/Level";
-import {ToastMessageService} from "../../../services/toast-message.service";
+import {Component, OnInit} from '@angular/core';
 import {DEFAULT_LINE_OPERANDS} from "../../interfaces/LineOperands";
 import {OperandsGenerator, OperationResultFn} from "../../interfaces/Functions";
 import {NumbersService} from "../../../../util/numbers.service";
@@ -37,29 +34,29 @@ export class AdditionComponent implements OnInit {
   operandsGeneratorForAddition: OperandsGenerator = _ => DEFAULT_LINE_OPERANDS;
   operationResultFnForAddition: OperationResultFn = (op1, op2) => op1 + op2
 
-  constructor(private numbersService :NumbersService) {
+  constructor(private numbersService: NumbersService) {
   }
 
   ngOnInit(): void {
 
     this.operandsGeneratorForAddition = level => {
       switch (String(level)) {
-        // case "1":
-        //   this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
-        //   this.secondValue = this.numbersService.getRandomNumberBetween(10, 99)
-        //   break
-        // case "2":
-        //   this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
-        //   this.secondValue = this.numbersService.getRandomNumberBetween(100, 999)
-        //   break
-        // case "3":
-        //   this.firstValue = this.numbersService.getRandomNumberBetween(100, 999)
-        //   this.secondValue = this.numbersService.getRandomNumberBetween(100, 999)
-        //   break
+        case "1":
+          return {
+            operand1: this.numbersService.getRandomNumberBetween(10, 99),
+            operand2: this.numbersService.getRandomNumberBetween(10, 99)
+          }
+        case "2":
+          return {
+            operand1: this.numbersService.getRandomNumberBetween(10, 99),
+            operand2: this.numbersService.getRandomNumberBetween(100, 999)
+          }
+        case "3":
+          return {
+            operand1: this.numbersService.getRandomNumberBetween(100, 999),
+            operand2: this.numbersService.getRandomNumberBetween(100, 999)
+          }
         default:
-          // this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
-          // this.secondValue = this.numbersService.getRandomNumberBetween(10, 99)
-          // break
           return {
             operand1: this.numbersService.getRandomNumberBetween(10, 99),
             operand2: this.numbersService.getRandomNumberBetween(10, 99)
@@ -96,6 +93,7 @@ export class AdditionComponent implements OnInit {
     // this.initializeResultsMap()
 
   }
+
   //
   // refreshLineAddition() {
   //   this.refreshSubject.next();

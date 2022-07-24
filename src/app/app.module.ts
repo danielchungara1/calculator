@@ -6,7 +6,7 @@ import {NavigationComponent} from './components/navigation/navigation.component'
 import {PrimengModule} from "./ui-libraries/primeng.module";
 import {AdditionComponent} from './components/core/operations/addition/addition.component';
 import {AppRouterModule} from "./router/app-router.module";
-import {LineAdditionComponent} from './components/core/operation-abstract/line/line-addition.component';
+import {LineAdditionComponent} from './components/core/operation/line/line-addition.component';
 import {RippleModule} from "primeng/ripple";
 import {LayoutComponent} from './components/layout/layout.component';
 import {FormsModule} from "@angular/forms";
@@ -22,7 +22,7 @@ import {LineDivisionComponent} from "./components/core/operations/division/line/
 import {
   LineMultiplicationComponent
 } from "./components/core/operations/multiplication/line/line-multiplication.component";
-import { OperationComponent } from './components/core/operation-abstract/operation.component';
+import { OperationComponent } from './components/core/operation/operation.component';
 
 @NgModule({
   declarations: [
