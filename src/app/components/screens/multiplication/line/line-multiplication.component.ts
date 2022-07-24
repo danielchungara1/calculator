@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
-import {NumbersService} from "../../../../../util/numbers.service";
+import {NumbersService} from "../../../../util/numbers.service";
 
 @Component({
   selector: 'app-line-multiplication',

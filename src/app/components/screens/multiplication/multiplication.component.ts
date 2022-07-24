@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject, Subject} from "rxjs";
-import {Level} from "../../interfaces/Level";
-import {ToastMessageService} from "../../../services/toast-message.service";
+import {Level} from "../../core/interfaces/Level";
+import {ToastMessageService} from "../../services/toast-message.service";
 
 @Component({
-  selector: 'app-subtraction',
-  templateUrl: './subtraction.component.html',
-  styleUrls: ['./subtraction.component.css']
+  selector: 'app-multiplication',
+  templateUrl: './multiplication.component.html',
+  styleUrls: ['./multiplication.component.css']
 })
-export class SubtractionComponent implements OnInit {
+export class MultiplicationComponent implements OnInit {
 
   cantRows = new Array<number>(5)
 

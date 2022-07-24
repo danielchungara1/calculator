@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LayoutComponent} from "../components/layout/layout.component";
-import {AdditionComponent} from "../components/core/operations/addition/addition.component";
-import {MultiplicationComponent} from "../components/core/operations/multiplication/multiplication.component";
-import {DivisionComponent} from "../components/core/operations/division/division.component";
-import {SubtractionComponent} from "../components/core/operations/subtraction/subtraction.component";
+import {AdditionComponent} from "../components/screens/addition/addition.component";
+import {MultiplicationComponent} from "../components/screens/multiplication/multiplication.component";
+import {DivisionComponent} from "../components/screens/division/division.component";
+import {SubtractionComponent} from "../components/screens/subtraction/subtraction.component";
 
 const routes: Routes = [{
   path: '',

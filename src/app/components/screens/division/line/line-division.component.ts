@@ -1,13 +1,13 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
-import {NumbersService} from "../../../../../util/numbers.service";
+import {NumbersService} from "../../../../util/numbers.service";
 
 @Component({
-  selector: 'app-line-subtraction',
-  templateUrl: './line-subtraction.component.html',
-  styleUrls: ['./line-subtraction.component.css']
+  selector: 'app-line-division',
+  templateUrl: './line-division.component.html',
+  styleUrls: ['./line-division.component.css']
 })
-export class LineSubtractionComponent implements OnInit {
+export class LineDivisionComponent implements OnInit {
 
   //---------------------------------------------------------------
   // Instance variables
@@ -60,16 +60,8 @@ export class LineSubtractionComponent implements OnInit {
   setNewValues(level: number): void {
     switch (String(level)) {
       case "1":
-        this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
-        this.secondValue = this.numbersService.getRandomNumberBetween(0, 9)
-        break
-      case "2":
-        this.firstValue = this.numbersService.getRandomNumberBetween(100, 999)
-        this.secondValue = this.numbersService.getRandomNumberBetween(10, 99)
-        break
-      case "3":
-        let random1 = this.numbersService.getRandomNumberBetween(100, 999)
-        let random2 = this.numbersService.getRandomNumberBetween(100, 999)
+        let random1 = this.numbersService.getRandomNumberBetween(1, 9)
+        let random2 = this.numbersService.getRandomNumberBetween(1, 9)
         if (random1 >= random2) {
           this.firstValue = random1
           this.secondValue = random2
@@ -78,9 +70,17 @@ export class LineSubtractionComponent implements OnInit {
           this.secondValue = random1
         }
         break
-      default:
+      case "2":
         this.firstValue = this.numbersService.getRandomNumberBetween(10, 99)
-        this.secondValue = this.numbersService.getRandomNumberBetween(0, 9)
+        this.secondValue = this.numbersService.getRandomNumberBetween(1, 9)
+        break
+      case "3":
+        this.firstValue = this.numbersService.getRandomNumberBetween(100, 999)
+        this.secondValue = this.numbersService.getRandomNumberBetween(1, 9)
+        break
+      default:
+        this.firstValue = this.numbersService.getRandomNumberBetween(1, 9)
+        this.secondValue = this.numbersService.getRandomNumberBetween(1, 9)
         break
     }
 

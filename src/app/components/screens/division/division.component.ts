@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject, Subject} from "rxjs";
-import {Level} from "../../interfaces/Level";
-import {ToastMessageService} from "../../../services/toast-message.service";
+import {Level} from "../../core/interfaces/Level";
+import {ToastMessageService} from "../../services/toast-message.service";
 
 @Component({
-  selector: 'app-multiplication',
-  templateUrl: './multiplication.component.html',
-  styleUrls: ['./multiplication.component.css']
+  selector: 'app-division',
+  templateUrl: './division.component.html',
+  styleUrls: ['./division.component.css']
 })
-export class MultiplicationComponent implements OnInit {
+export class DivisionComponent implements OnInit {
 
   cantRows = new Array<number>(5)
 

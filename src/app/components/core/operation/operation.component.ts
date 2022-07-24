@@ -31,6 +31,11 @@ export class OperationComponent implements OnInit {
 
   results = new Map<number, boolean>();
 
+  timerOn: boolean = true;
+  timerInterval: any;
+  timer: number = 0;
+  TIMEOUT_TIMER: number = 1000;
+
   constructor(private messageService: ToastMessageService) {
   }
 
@@ -42,6 +47,14 @@ export class OperationComponent implements OnInit {
     this.levelSubject.next(this.currentLevel.code)
 
     this.initializeResultsMap()
+
+    this.refreshSubject.asObservable().subscribe(_ => {
+      this.initializeTimer()
+    })
+    this.levelSubject.asObservable().subscribe(_ => {
+      this.initializeTimer()
+    })
+
   }
 
   refreshLineAddition() {
@@ -78,7 +91,7 @@ export class OperationComponent implements OnInit {
     this.results.set($event.id, $event.status)
     if (Array.from(this.results.values()).every(value => value)) {
       this.messageService.showSuccess({
-        message: "Resuelto correctamente.",
+        message: "Resuelto correctamente en " + this.timerFormatted() + ".",
         options: {
           positionClass: "toast-bottom-center",
           timeOut: 2500,
@@ -88,6 +101,38 @@ export class OperationComponent implements OnInit {
       this.refreshLineAddition();
       this.initializeResultsMap();
     }
+  }
+
+  switchTimer() {
+    if (this.timerOn) {
+      this.setTimerInterval()
+    } else {
+      clearTimeout(this.timerInterval)
+    }
+  }
+
+  setTimerInterval() {
+    this.timerInterval = setInterval(() => {
+      this.timer++
+    }, this.TIMEOUT_TIMER);
+  }
+
+  initializeTimer() {
+    this.timer = 0
+    this.timerOn = true
+    clearTimeout(this.timerInterval)
+    this.setTimerInterval()
+  }
+
+  timerFormatted(): string {
+    let minutes = Math.floor(this.timer / 60)
+    let seconds = this.timer - minutes * 60
+    return minutes === 0
+      ? seconds.toString().concat(' segundos')
+      : minutes.toString()
+        .concat(' minutos,')
+        .concat(seconds.toString())
+        .concat(' segundos');
   }
 
 }

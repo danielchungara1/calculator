@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject, Subject} from "rxjs";
-import {Level} from "../../interfaces/Level";
-import {ToastMessageService} from "../../../services/toast-message.service";
+import {Level} from "../../core/interfaces/Level";
+import {ToastMessageService} from "../../services/toast-message.service";
 
 @Component({
-  selector: 'app-division',
-  templateUrl: './division.component.html',
-  styleUrls: ['./division.component.css']
+  selector: 'app-subtraction',
+  templateUrl: './subtraction.component.html',
+  styleUrls: ['./subtraction.component.css']
 })
-export class DivisionComponent implements OnInit {
+export class SubtractionComponent implements OnInit {
 
   cantRows = new Array<number>(5)
 

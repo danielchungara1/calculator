@@ -3,6 +3,9 @@
   [style]="{'width': '25rem', 'margin-bottom': '2em'}"
   class="box-container"
 >
+  <!----------------------------------------------------------------------
+  --- REFRESH
+  ------------------------------------------------------------------------>
   <ng-template pTemplate="header">
     <button
       pButton
@@ -13,11 +16,10 @@
       (click)="refreshLineAddition()"
     ></button>
   </ng-template>
-<!--  <div *ngFor="let number of cantRows; let i = index" >-->
-<!--  [refreshEvent]="refreshSubject.asObservable()"-->
-<!--  [position]="i"-->
-<!--  [levelEvent] = "levelSubject.asObservable()"-->
-<!--  (newStateLineEvent) = "handleNewLineResult($event)"-->
+
+  <!----------------------------------------------------------------------
+  --- LINES
+  ------------------------------------------------------------------------>
   <div *ngFor="let row of rows; let i = index" >
     <app-line-addition
       [operandsGenerator] = "operandsGenerator"
@@ -31,8 +33,10 @@
     ></app-line-addition>
   </div>
 
-<!--  </div>-->
   <ng-template pTemplate="footer">
+    <!----------------------------------------------------------------------
+    --- LEVELS
+    ------------------------------------------------------------------------>
     <p-dropdown
       #selectLevels
       [options]="levels"
@@ -41,10 +45,14 @@
       (onChange)="handleChangeLevel(selectLevels.value)"
     >
     </p-dropdown>
-<!--    <div class="timer-container">-->
-<!--      <p-inputSwitch [(ngModel)]="onTimer" (onChange)="switchTimer()"></p-inputSwitch>-->
-<!--      <div class="timer-number"> {{timer}} </div>-->
-<!--    </div>-->
+    <!----------------------------------------------------------------------
+    --- TIMER
+    ------------------------------------------------------------------------>
+    <div class="timer-container">
+      <p-inputSwitch [(ngModel)]="timerOn" (onChange)="switchTimer()"></p-inputSwitch>
+      <div class="timer-number"> {{timer}} </div>
+    </div>
+
   </ng-template>
 
 </p-card>
