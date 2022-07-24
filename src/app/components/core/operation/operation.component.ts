@@ -3,7 +3,7 @@ import {OperandsGenerator, OperationResultFn} from "../interfaces/Functions";
 import {DEFAULT_LINE_OPERANDS} from "../interfaces/LineOperands";
 import {BehaviorSubject, Subject} from "rxjs";
 import {DEFAULT_LEVEL, DEFAULT_LEVELS, Level} from "../interfaces/Level";
-import {ToastMessageService} from "../../services/toast-message.service";
+import {ToastMessageService} from "../../services/toast/toast-message.service";
 
 interface LineParams {operand1: number, operand2: number, result: number}
 

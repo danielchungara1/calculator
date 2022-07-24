@@ -21,7 +21,7 @@ export class MultiplicationComponent implements OnInit {
       switch (String(level)) {
         case "1":
           return {
-            operand1: this.numbersService.getRandomNumberBetween(1, 9),
+            operand1: this.numbersService.getRandomNumberBetween(1, 3),
             operand2: this.numbersService.getRandomNumberBetween(10, 99)
           }
         case "2":
@@ -36,7 +36,7 @@ export class MultiplicationComponent implements OnInit {
           }
         default:
           return {
-            operand1: this.numbersService.getRandomNumberBetween(1, 9),
+            operand1: this.numbersService.getRandomNumberBetween(1, 3),
             operand2: this.numbersService.getRandomNumberBetween(10, 99)
           }
       }

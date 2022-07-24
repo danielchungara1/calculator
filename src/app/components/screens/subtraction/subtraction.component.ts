@@ -22,7 +22,7 @@ export class SubtractionComponent implements OnInit {
         case "1":
           return {
             operand1: this.numbersService.getRandomNumberBetween(10, 99),
-            operand2: this.numbersService.getRandomNumberBetween(0, 9)
+            operand2: this.numbersService.getRandomNumberBetween(1, 9)
           }
         case "2":
           return {
@@ -46,7 +46,7 @@ export class SubtractionComponent implements OnInit {
         default:
           return {
             operand1: this.numbersService.getRandomNumberBetween(10, 99),
-            operand2: this.numbersService.getRandomNumberBetween(0, 9)
+            operand2: this.numbersService.getRandomNumberBetween(1, 9)
           }
       }
     };

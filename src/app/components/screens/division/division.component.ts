@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OperandsGenerator, OperationResultFn} from "../../core/interfaces/Functions";
 import {DEFAULT_LINE_OPERANDS} from "../../core/interfaces/LineOperands";
 import {NumbersService} from "../../../util/numbers.service";
+import {Operation} from "../../core/model/Operation";
+import {Operands} from "../../core/interfaces/Operands";
 
 @Component({
   selector: 'app-division',
@@ -9,6 +11,7 @@ import {NumbersService} from "../../../util/numbers.service";
   styleUrls: ['./division.component.css']
 })
 export class DivisionComponent implements OnInit {
+
   operandsGeneratorForDivision: OperandsGenerator = _ => DEFAULT_LINE_OPERANDS;
   operationResultFnForDivision: OperationResultFn = (op1, op2) => op1 / op2
 
@@ -16,48 +19,53 @@ export class DivisionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // @ts-ignore
     this.operandsGeneratorForDivision = level => {
       switch (String(level)) {
         case "1":
-          let random1 = this.numbersService.getRandomNumberBetween(1, 9)
-          let random2 = this.numbersService.getRandomNumberBetween(1, 9)
-          if (random1 >= random2) {
-            return {
-              operand1: random1,
-              operand2: random2
-            }
-          } else {
-            return {
-              operand1: random2,
-              operand2: random1
-            }
-          }
+          return this.generateLevelsMap().get(1)
         case "2":
-          return {
-            operand1: this.numbersService.getRandomNumberBetween(10, 99),
-            operand2: this.numbersService.getRandomNumberBetween(1, 9)
-          }
+          return this.generateLevelsMap().get(2)
         case "3":
-          return {
-            operand1: this.numbersService.getRandomNumberBetween(100, 999),
-            operand2: this.numbersService.getRandomNumberBetween(1, 9)
-          }
+          return this.generateLevelsMap().get(3)
         default:
-          let randomA = this.numbersService.getRandomNumberBetween(1, 9)
-          let randomB = this.numbersService.getRandomNumberBetween(1, 9)
-          if (randomA >= randomB) {
-            return {
-              operand1: randomA,
-              operand2: randomB
-            }
-          } else {
-            return {
-              operand1: randomA,
-              operand2: randomB
-            }
-          }
+          return this.generateLevelsMap().get(1)
       }
     };
   }
 
+  private generateLevelsMap(): Map<number, Operands> {
+
+    let levelsMap = new Map<number, Operands>();
+
+    const LEVEL1 = new Operation(
+      this.numbersService.getRandomNumberBetween(1, 9),
+      this.numbersService.getRandomNumberBetween(1, 9)
+    )
+      .swapOperandsByCondition((op1, op2) => !(op1 >= op2))
+      .doOperandsDivisible()
+      .operands()
+
+    const LEVEL2 = new Operation(
+      this.numbersService.getRandomNumberBetween(10, 99),
+      this.numbersService.getRandomNumberBetween(1, 9)
+    )
+      .doOperandsDivisible()
+      .operands()
+
+    const LEVEL3 = new Operation(
+      this.numbersService.getRandomNumberBetween(100, 999),
+      this.numbersService.getRandomNumberBetween(1, 9)
+    )
+      .doOperandsDivisible()
+      .operands()
+
+    levelsMap.set(1, LEVEL1)
+    levelsMap.set(2, LEVEL2)
+    levelsMap.set(3, LEVEL3)
+
+    return levelsMap
+
+  }
 }

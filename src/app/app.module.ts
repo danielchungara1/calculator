@@ -11,7 +11,7 @@ import {RippleModule} from "primeng/ripple";
 import {LayoutComponent} from './components/layout/layout.component';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ToastMessageService} from "./components/services/toast-message.service";
+import {ToastMessageService} from "./components/services/toast/toast-message.service";
 import {MessageService} from "primeng/api";
 import {ToastrModule} from "ngx-toastr";
 import {OperationComponent} from './components/core/operation/operation.component';
