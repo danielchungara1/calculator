@@ -1,38 +1,8 @@
-<p-card
-  header="Divisiones"
-  [style]="{'width': '25rem', 'margin-bottom': '2em'}"
-  class="box-container"
->
-  <ng-template pTemplate="header">
-    <button
-      pButton
-      pRipple
-      type="button"
-      icon="pi pi-refresh"
-      class="p-button-rounded p-button-secondary p-button-text refresh-addition"
-      (click)="refreshLineAddition()"
-    ></button>
-  </ng-template>
-  <div *ngFor="let number of cantRows; let i = index" >
-    <app-line-division
-      [refreshEvent]="refreshSubject.asObservable()"
-      [position]="i"
-      [levelEvent] = "levelSubject.asObservable()"
-      (newStateLineEvent) = "handleNewLineResult($event)"
-    ></app-line-division>
-  </div>
-  <ng-template pTemplate="footer">
-    <p-dropdown
-      #selectLevels
-      [options]="levels"
-      [(ngModel)]="currentLevel"
-      optionLabel="name"
-      (onChange)="handleChangeLevel(selectLevels.value)"
-    >
-    </p-dropdown>
-    <div class="timer-container">
-      <p-inputSwitch [(ngModel)]="onTimer" (onChange)="switchTimer()"></p-inputSwitch>
-      <div class="timer-number"> {{timer}} </div>
-    </div>
-  </ng-template>
-</p-card>
+<app-operation
+  title="Divisiones"
+  [operandsGenerator] = "operandsGeneratorForDivision"
+  [operationResultFn]= "operationResultFnForDivision"
+  symbolOperation = "/"
+  nameOperation= "division"
+  [lines]= 5
+></app-operation>

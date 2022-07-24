@@ -14,15 +14,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastMessageService} from "./components/services/toast-message.service";
 import {MessageService} from "primeng/api";
 import {ToastrModule} from "ngx-toastr";
-import {SubtractionComponent} from "./components/screens/subtraction/subtraction.component";
-import {DivisionComponent} from "./components/screens/division/division.component";
-import {MultiplicationComponent} from "./components/screens/multiplication/multiplication.component";
-import {LineSubtractionComponent} from "./components/screens/subtraction/line/line-subtraction.component";
-import {LineDivisionComponent} from "./components/screens/division/line/line-division.component";
-import {
-  LineMultiplicationComponent
-} from "./components/screens/multiplication/line/line-multiplication.component";
-import { OperationComponent } from './components/core/operation/operation.component';
+import {OperationComponent} from './components/core/operation/operation.component';
+import { SubtractionComponent } from './components/screens/subtraction/subtraction.component';
+import { MultiplicationComponent } from './components/screens/multiplication/multiplication.component';
+import { DivisionComponent } from './components/screens/division/division.component';
 
 @NgModule({
   declarations: [
@@ -30,15 +25,11 @@ import { OperationComponent } from './components/core/operation/operation.compon
     NavigationComponent,
     AdditionComponent,
     LineAdditionComponent,
-    LineSubtractionComponent,
-    LineDivisionComponent,
-    LineMultiplicationComponent,
     LayoutComponent,
-    SubtractionComponent,
-    DivisionComponent,
-    MultiplicationComponent,
     OperationComponent,
-
+    SubtractionComponent,
+    MultiplicationComponent,
+    DivisionComponent,
   ],
   imports: [
     BrowserModule,

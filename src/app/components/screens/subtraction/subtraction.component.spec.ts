@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SubtractionComponent } from './subtraction.component';
 
-describe('AdditionComponent', () => {
+describe('SubtractionComponent', () => {
   let component: SubtractionComponent;
   let fixture: ComponentFixture<SubtractionComponent>;
 
